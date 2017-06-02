@@ -1,0 +1,49 @@
+1.vue-cli脚手架的使用步骤：
+$ npm install -g vue-cli全局安装vue-cli 
+$ vue 看是否可以使用vue命令
+$ vue list 展示当前的模板                       
+$ vue init <template-name> <project-name> ==》$ vue init webpack sell
+$ node -v 版本在4之上
+下面会有指示（cd。。）
+
+
+
+
+
+
+
+
+
+ESlint  es6的代码风格检查器  y
+AirBNB  默认
+Karma + Mocha No
+e2e   No
+
+build和config都是webpack配置相关
+node_modules      npm install安装的npm依赖代码库
+src  开发的所有代码都在这
+static 第三方静态资源 .gitkeep的作用，就是当文件内容为空的时候，不会被git乎略，可以提交到仓库
+.babelrc  babel的配置文件 把ES6编译为ES5
+.editorconfig  编辑器的配置
+.eslintignore  忽略对build和config文件夹进行语法检查
+
+
+
+
+命令行：
+ls
+ll -a     
+          
+
+
+
+
+
+
+
+
+
+
+
+      
+    
