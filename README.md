@@ -1,4 +1,4 @@
-# life-app-vue   （now==>外部组件2）
+# life-app-vue
 [在线效果预览][1]
 > A Vue.js project
 
