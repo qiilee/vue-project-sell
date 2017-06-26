@@ -1,7 +1,5 @@
 <template>
-<!-- 头部 -->
     <div class="header">
-        <!-- 内容 -->
         <div class="content-warp">
             <div class="avatar">
                 <img :src="seller.avatar"/>
@@ -17,25 +15,24 @@
                        {{seller.description}}/{{seller.deliveryTime}}分钟送达
                 </div>
                 <div v-if="seller.supports" class="supports">
-                       <span class="icon" :class="classMap[seller.supports[1].type]">
+                       <span class="icon" :class="classMap[seller.supports[0].type]">
                        </span>
-                       <span class="text">{{seller.supports[1].description}}</span>
+                       <span class="text">{{seller.supports[0].description}}</span>
                 </div>
             </div>
             <div v-if="seller.supports" class="support-count" @click="showDetail">
                     <span class="count">{{seller.supports.length}}个</span>
             </div>
         </div>
-        <!-- 公告 -->
         <div class="bulletin-warp" @click="showDetail">
             <span class="bulletin-title"><img src="./img7.png" alt="" /></span>
             <span class="bulletin-text">{{seller.bulletin}}</span>
         </div>
-        <!-- 背景 -->
+        
         <div class="background">
             <img :src="seller.avatar" width="100%" height="100%" alt="" />
         </div>
-        <!-- 弹出层/细节展示 -->
+
         <div class="detail" v-show="detailShow">
             <div class="detail-warp clearfix" >
                 <div class="detail-main">
@@ -70,7 +67,7 @@
         </div>
     </div>
 </template>
-<script>
+<script type="text/ecmascript-6">
 import star from 'components/star/star'
 export default{
     data(){
