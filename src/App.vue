@@ -12,7 +12,7 @@
      	     <router-link to="/seller">商家</router-link>
      	</div>
      </div>
-     <router-view></router-view>
+     <router-view :seller='seller'></router-view>
   </div> 
 </template>
 
@@ -56,7 +56,7 @@ export default {
             text-align:center
             & > a 
                 display:block
-                font: 700 14px/1.5em "Microsoft YaHei";
+                font: 700 14px/2.5em "Microsoft YaHei";
                 color: rgb(77,85,93)
                 &.active
                      color: rgb(240,20,20)
