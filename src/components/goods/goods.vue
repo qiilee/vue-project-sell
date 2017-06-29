@@ -36,7 +36,7 @@
                 </li>
             </ul>
         </div>
-        <shopcart :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice"></shopcart>
+        <shopcart v-on:shopcart :select-foods="selectFoods" :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice"></shopcart>
     </div>
 </template>
 
@@ -70,6 +70,17 @@
                      }
                 }
                 return 0;
+            },
+            selectFoods() {
+                let foods = [];
+                this.goods.forEach((good)=>{
+                    good.foods.forEach((food)=>{
+                        if(food.count) {
+                           foods.push(food);
+                        }
+                    })
+                })
+                return foods;
             }
         },
         created() {
@@ -97,12 +108,19 @@
                console.log('左侧索引：'+index);
                console.log('事件为：'+event);
             },
+            _drop(target){
+                // 体验优化，异步执行下落动画
+                this.$nextTick(()=>{
+                   this.$refs.shopcart.drop(target);
+                });     
+            },
             _initScroll(){
                 this.menuScroll = new BScroll(this.$refs.menuWrapper,{
                     click:true
                 });
 
                 this.foodsScroll = new BScroll(this.$refs.foodsWrapper,{
+                    click:true,
                     probeType:3
                 });
                 this.foodsScroll.on('scroll',(pos)=>{
@@ -123,6 +141,11 @@
         components:{
             shopcart,
             cartcontrol
+        },
+        events: {
+            'cart.add'(target) {
+                 this._drop(target);
+            }
         }
     };
 </script>
@@ -228,5 +251,8 @@
                         .old
                              text-decoration:line-through     
                              font-size:10px
-                                      
+                    .cartcontrol-wrapper
+                        position:absolute
+                        right:0
+                        bottom:12px                
 </style>
