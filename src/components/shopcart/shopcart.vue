@@ -306,4 +306,27 @@
                   &.fold-transition
                        transition:all 0.5s
                        transform: translate3d(0,-100%,0)
+                  &.fold-enter, &.fold-leave
+                       transform: translate3d(0,0,0) 
+                  .list-header
+                       height:40px
+                       line-height:40px
+                       padding:0 18px
+                       background:#f3f5f7
+                       border-bottom:1px solid rgba(7,17,27,0.1)
+                       .title
+                            float: left
+                            font-size:14px
+                            color:rgb(7,17,27)
+                       .empty
+                            float: right     
+                            font-size:12px
+                            color:rgb(0,160,220)
+                  .list-content
+                       padding:0 18px
+                       max-height:217px
+                       overflow:hidden
+                       background:#fff
+                       
+
 </style>

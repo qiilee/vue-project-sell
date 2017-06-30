@@ -1,4 +1,5 @@
 <template>
+  <div>
     <div class='goods'>
         <div class='menu-wrapper' ref='menuWrapper'>
         	<ul>
@@ -14,7 +15,7 @@
                 <li v-for='item in goods' class='food-list food-list-hook'>
                      <h1 class='title'>{{item.name}}</h1>
                      <ul>
-                         <li v-for='food in item.foods' class='food-item border-1px'>
+                         <li @click="selectFood(food,$event)" v-for='food in item.foods' class='food-item border-1px'>
                                <div class='icon'>
                                    <img width='57' height='57' :src='food.icon'>
                                </div>
@@ -38,12 +39,15 @@
         </div>
         <shopcart v-on:shopcart :select-foods="selectFoods" :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice"></shopcart>
     </div>
+    <food :food="selectedFood" v-on:food></food>
+  </div>
 </template>
 
 <script type="text/ecmascript-6">
     import BScroll from 'better-scroll';
     import shopcart from 'components/shopcart/shopcart';
     import cartcontrol from 'components/cartcontrol/cartcontrol';
+    import food from 'components/food/food';
 
     const ERR_OK = 0;
 
@@ -58,6 +62,7 @@
                 goods:[],
                 listHeight:[],
                 scrollY:0,
+                selectedFood:{}
             };
         },
         computed:{
@@ -105,8 +110,15 @@
                 let foodList = this.$refs.foodsWrapper.getElementsByClassName('food-list-hook');
                 let el = foodList[index];
                 this.foodsScroll.scrollToElement(el,300);
-               console.log('左侧索引：'+index);
-               console.log('事件为：'+event);
+                console.log('左侧索引：'+index);
+                console.log('事件为：'+event);
+            },
+            selectFood(food,event) {
+                if(!event._constructed){
+                    return;//防止pc时点击两次
+                }
+                this.selectedFood = food;
+                this.$refs.food.show()
             },
             _drop(target){
                 // 体验优化，异步执行下落动画
@@ -140,7 +152,8 @@
         },
         components:{
             shopcart,
-            cartcontrol
+            cartcontrol,
+            food
         },
         events: {
             'cart.add'(target) {
